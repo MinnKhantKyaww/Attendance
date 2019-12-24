@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.attendancekt.R
 import kotlinx.android.synthetic.main.fragment_member_edit.*
 
@@ -28,7 +29,7 @@ class MemberListFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if(id == R.id.addMember) {
-            Navigation.findNavController(view!!).navigate(R.id.action_memberListFragment_to_memberEditFragment)
+            findNavController().navigate(R.id.action_memberListFragment_to_memberEditFragment)
             return true
         }
         return super.onOptionsItemSelected(item)
