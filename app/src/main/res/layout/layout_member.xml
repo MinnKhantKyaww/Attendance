@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/memberLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:orientation="vertical"
-    android:translationZ="4dp"
-    app:cardElevation="3dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="obj"
+            type="com.example.attendancekt.model.entity.Member" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/memberLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        android:translationZ="4dp"
+        app:cardElevation="3dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tvImage"
-            android:layout_width="64dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/img_round_border"
-            android:src="@mipmap/daredevil"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tvImage"
+                android:layout_width="64dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/img_round_border"
+                android:src="@mipmap/daredevil"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Minn Khant Kyaw"
-            app:layout_constraintEnd_toStartOf="@+id/dropDownExpand"
-            app:layout_constraintStart_toEndOf="@+id/tvImage"
-            app:layout_constraintTop_toTopOf="@+id/tvImage"
-            tools:text="Minn Khant Kyaw" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{obj.name}"
+                app:layout_constraintEnd_toStartOf="@+id/dropDownExpand"
+                app:layout_constraintStart_toEndOf="@+id/tvImage"
+                app:layout_constraintTop_toTopOf="@+id/tvImage"
+                tools:text="Minn Khant Kyaw" />
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="minnkhantkyaw@gmail.com"
-            app:layout_constraintBottom_toBottomOf="@+id/tvImage"
-            app:layout_constraintEnd_toEndOf="@+id/tvName"
-            app:layout_constraintStart_toStartOf="@+id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
-            tools:text="minnkhantkyaw@gmail.com" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{obj.email}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvImage"
+                app:layout_constraintEnd_toEndOf="@+id/tvName"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                tools:text="minnkhantkyaw@gmail.com" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/dropDownExpand"
-            android:layout_width="37dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_expand_more_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dropDownExpand"
+                android:layout_width="37dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_expand_more_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

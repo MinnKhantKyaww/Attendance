@@ -15,6 +15,8 @@ class MemberRepo(private val dao: MemberDao) {
 
     fun getMember(id: Int) = dao.getMember(id)
 
+    fun getMemberSync(id: Int) = dao.getMemberSync(id)
+
     fun getAllMember() = dao.getAllMember()
 
 }

@@ -7,7 +7,8 @@
     <fragment
         android:id="@+id/memberListFragment"
         android:name="com.example.attendancekt.ui.member.MemberListFragment"
-        android:label="MemberListFragment" >
+        android:label="MemberListFragment"
+        tools:layout="@layout/fragment_list_member">
         <action
             android:id="@+id/action_memberListFragment_to_memberEditFragment"
             app:destination="@id/memberEditFragment" />
@@ -15,5 +16,6 @@
     <fragment
         android:id="@+id/memberEditFragment"
         android:name="com.example.attendancekt.ui.member.MemberEditFragment"
-        android:label="MemberEditFragment" />
+        android:label="MemberEditFragment"
+        tools:layout="@layout/fragment_member_edit"/>
 </navigation>

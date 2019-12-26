@@ -15,4 +15,7 @@ interface MemberDao: CudDao<Member> {
 
     @Query("SELECT * FROM MEMBER WHERE id = :id LIMIT 1")
     fun getMember(id: Int): LiveData<Member>
+
+    @Query("SELECT * FROM MEMBER WHERE id = :id LIMIT 1")
+    fun getMemberSync(id: Int): Member
 }
