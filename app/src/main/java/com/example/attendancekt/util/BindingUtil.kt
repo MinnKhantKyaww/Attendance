@@ -29,11 +29,11 @@ class BindingUtil {
         return if(value.isEmpty()) 0 else value.toInt()
     }*/
 
-    /*fun setImageUri(imageView: ImageView, imageFilePath: String) {
+    fun setImageUri(imageView: ImageView, imageFilePath: String) {
         if(imageFilePath != null && !imageFilePath.isEmpty()) {
             imageView.setImageURI(Uri.parse(imageFilePath))
         }
-    }*/
+    }
 
     @BindingAdapter("visibile")
     fun View.setVisibile(member: Member) {

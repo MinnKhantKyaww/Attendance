@@ -30,7 +30,7 @@ class MemberAdapter(): ListAdapter<Member, MemberAdapter.MemberViewHolder>(DIFF_
 
     private var adapterItemClickListener: AdpaterItemClickListener<Member>? = null
 
-    fun setAdapterItemClickListener(adapterItemClickListener: AdpaterItemClickListener<Member>) {
+    fun setAdapterItemClickListener(adapterItemClickListener : AdpaterItemClickListener<Member>) {
         this.adapterItemClickListener = adapterItemClickListener
     }
 
@@ -43,10 +43,6 @@ class MemberAdapter(): ListAdapter<Member, MemberAdapter.MemberViewHolder>(DIFF_
         var binding: ViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.layout_member, parent, false)
 
         return MemberViewHolder(binding)
-    }
-
-    interface onAdpaterItemClickListener {
-        fun onItemClick(member: Member)
     }
 
     inner class  MemberViewHolder constructor(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){

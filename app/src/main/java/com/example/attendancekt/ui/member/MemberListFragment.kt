@@ -45,7 +45,8 @@ class MemberListFragment : Fragment() {
             )
         )
 
-        //memberAdapter = MemberAdapter()
+        //memberAdapter.setAdapterItemClickListener()
+
         memberListRecycle.adapter = memberAdapter
 
        /* memberAdapter.setAdapterItemClickListener(

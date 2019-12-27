@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="@+id/materialCardView"
                 app:layout_constraintTop_toBottomOf="@+id/addPhone" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/addMemberPhoto"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -60,6 +60,7 @@
                 android:background="@drawable/img_round_border"
                 android:elevation="3dp"
                 android:src="@mipmap/soldier_helmet"
+                android:paddingTop="@{viewModel.members.photo}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/materialCardView" />
