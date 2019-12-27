@@ -30,13 +30,8 @@ class MemberListFragment : Fragment() {
         viewModel.members.observe(this, memberObserver)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        inflater.inflate(R.layout.fragment_list_member, container, false)
-        return super.onCreateView(inflater, container, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_list_member, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,21 +46,17 @@ class MemberListFragment : Fragment() {
         )
 
         //memberAdapter = MemberAdapter()
-        memberListRecycle?.adapter = memberAdapter
+        memberListRecycle.adapter = memberAdapter
 
        /* memberAdapter.setAdapterItemClickListener(
 
         )*/
 
-        findNavController().navigate(R.id.action_memberListFragment_to_memberEditFragment)
+        //findNavController().navigate(R.id.action_memberListFragment_to_memberEditFragment)
 
         //bundle.putInt()
 
         //memberListRecycle.adapter(memberAdapter)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

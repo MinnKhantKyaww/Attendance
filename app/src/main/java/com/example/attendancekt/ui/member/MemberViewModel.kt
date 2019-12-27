@@ -21,6 +21,5 @@ class MemberViewModel : AndroidViewModel {
         this.memberRepo = ServiceLocator.getInstance(application).memberRepo()
     }
 
-
 }
 

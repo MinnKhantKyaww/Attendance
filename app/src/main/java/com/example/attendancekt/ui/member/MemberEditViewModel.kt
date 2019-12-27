@@ -2,6 +2,7 @@ package com.example.attendancekt.ui.member
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.attendancekt.ServiceLocator
 import com.example.attendancekt.model.entity.Member
@@ -26,8 +27,6 @@ class MemberEditViewModel: AndroidViewModel {
             if (member != null) members.postValue(member) else members.postValue(Member())
         }
     }
-
-
 
     fun save() {
         AppExecutors().diskIO().execute {

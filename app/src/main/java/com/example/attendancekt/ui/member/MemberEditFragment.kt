@@ -29,18 +29,24 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        val activity= requireActivity() as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        if(savedInstanceState == null) {
+        //memberEditBinding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_member_edit)
+
+        if (savedInstanceState == null) {
             viewModel = ViewModelProviders.of(this).get(MemberEditViewModel::class.java)
 
         }
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragmentManager: FragmentManager? = fragmentManager
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val fragmentManager: FragmentManager? = getFragmentManager()
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
         memberEditBinding = MemberEditBinding.inflate(inflater, container, false)
@@ -54,34 +60,32 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        super.onViewCreated(view, savedInstanceState)
         val age = ArrayList<Int>()
-        for(x in 1 until 100) {
+        for (x in 1 until 100) {
             age.add(x)
         }
 
         val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, age)
 
-      //  arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        //  arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         ageSpinner?.adapter = arrayAdapter
         ageSpinner?.onItemSelectedListener = this
 
-
-
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val memberObserver = Observer<Boolean> {op -> if(op) requireActivity().onBackPressed()}
+        val memberObserver = Observer<Boolean> { op -> if (op) requireActivity().onBackPressed() }
         viewModel.operation.observe(this, memberObserver)
+
         var id: Int
-        if(arguments != null) {
+        if (arguments != null) {
             id = arguments!!.getInt(KEY_PRODUCT_ID)
-        }else {
-           id = 0
+        } else {
+            id = 0
         }
         viewModel.init(id)
     }
@@ -93,22 +97,16 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        val activity= requireActivity() as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.actionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_save) {
-            viewModel?.save()
+        if (item.itemId == R.id.action_save) {
+            viewModel.save()
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val activity = requireActivity()
-        activity.actionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
