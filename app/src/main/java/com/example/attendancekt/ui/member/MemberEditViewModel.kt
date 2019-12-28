@@ -9,7 +9,7 @@ import com.example.attendancekt.model.entity.Member
 import com.example.attendancekt.model.repo.MemberRepo
 import com.example.attendancekt.util.AppExecutors
 
-class MemberEditViewModel: AndroidViewModel {
+class MemberEditViewModel(application: Application) : AndroidViewModel(application) {
 
     private var memberRepo: MemberRepo? = null
 
@@ -17,7 +17,7 @@ class MemberEditViewModel: AndroidViewModel {
 
     var operation: MutableLiveData<Boolean> = MutableLiveData()
 
-    constructor(application: Application) : super(application) {
+    init {
         this.memberRepo = ServiceLocator.getInstance(application).memberRepo()
     }
 

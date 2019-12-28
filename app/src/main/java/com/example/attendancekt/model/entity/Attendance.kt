@@ -1,9 +1,21 @@
 package com.example.attendancekt.model.entity
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import org.joda.time.DateTime
+import org.joda.time.LocalDateTime
 
-@Entity
-data class Attendance(@PrimaryKey(autoGenerate = true) val id: Long) {
+@Entity(
+    foreignKeys = [
+        ForeignKey(parentColumns = ["id"], childColumns = ["member_id"], entity = Member::class)]
+,indices = [Index("member_id")]
+)
+data class Attendance(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    @ColumnInfo(name = "event_time")
+    val eventTime: DateTime = DateTime.now(),
+    @ColumnInfo(name = "member_id")
+    val memberId: Int = 0
+) {
 
 }

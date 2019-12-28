@@ -30,7 +30,7 @@ class MemberAdapter(): ListAdapter<Member, MemberAdapter.MemberViewHolder>(DIFF_
 
     private var adapterItemClickListener: AdpaterItemClickListener<Member>? = null
 
-    fun setAdapterItemClickListener(adapterItemClickListener : AdpaterItemClickListener<Member>) {
+    fun setAdapterItemClickListener(adapterItemClickListener : AdpaterItemClickListener<Member>): Unit {
         this.adapterItemClickListener = adapterItemClickListener
     }
 

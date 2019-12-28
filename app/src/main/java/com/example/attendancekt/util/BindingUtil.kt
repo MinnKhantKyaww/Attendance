@@ -13,7 +13,8 @@ import kotlin.math.abs
 
 class BindingUtil {
 
-    /*@BindingAdapter("android:text")
+    companion object {
+        /*@BindingAdapter("android:text")
     fun setNumber(textView: TextView, value: Long) {
         textView.text = value.toString()
     }
@@ -29,14 +30,17 @@ class BindingUtil {
         return if(value.isEmpty()) 0 else value.toInt()
     }*/
 
-    fun setImageUri(imageView: ImageView, imageFilePath: String) {
-        if(imageFilePath != null && !imageFilePath.isEmpty()) {
-            imageView.setImageURI(Uri.parse(imageFilePath))
+        @BindingAdapter("path")
+        fun setImageUri(imageView: ImageView, imageFilePath: String) {
+            if (imageFilePath != null && imageFilePath.isNotEmpty()) {
+                imageView.setImageURI(Uri.parse(imageFilePath))
+            }
         }
-    }
 
-    @BindingAdapter("visibile")
-    fun View.setVisibile(member: Member) {
-        visibility = if(member.id > 0) View.VISIBLE else View.INVISIBLE
+        @BindingAdapter("visibile")
+        fun View.setVisibile(member: Member) {
+            visibility = if (member.id > 0) View.VISIBLE else View.INVISIBLE
+        }
+
     }
 }

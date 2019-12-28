@@ -45,7 +45,12 @@ class MemberListFragment : Fragment() {
             )
         )
 
-        //memberAdapter.setAdapterItemClickListener()
+        memberAdapter.setAdapterItemClickListener(object : AdpaterItemClickListener<Member> {
+            override fun onClick(t: Member) {
+
+            }
+
+        })
 
         memberListRecycle.adapter = memberAdapter
 

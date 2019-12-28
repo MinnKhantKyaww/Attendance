@@ -9,15 +9,15 @@ import com.example.attendancekt.model.entity.Member
 import com.example.attendancekt.model.repo.MemberRepo
 import com.example.attendancekt.util.AppExecutors
 
-class MemberViewModel : AndroidViewModel {
+class MemberViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var memberRepo: MemberRepo? = null
+    private lateinit var memberRepo: MemberRepo
 
     val members: LiveData<List<Member>> by lazy {
-        memberRepo?.getAllMember()!!
+        memberRepo.getAllMember()
     }
 
-    constructor(application: Application) : super(application) {
+    init {
         this.memberRepo = ServiceLocator.getInstance(application).memberRepo()
     }
 
