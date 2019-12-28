@@ -19,4 +19,8 @@ class MemberRepo(private val dao: MemberDao) {
 
     fun getAllMember() = dao.getAllMember()
 
+    fun deleteById(id: Int) = delete(dao.getMemberSync(id))
+
+    private fun delete(member: Member) = dao.delete(member)
+
 }

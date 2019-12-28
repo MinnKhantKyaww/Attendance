@@ -8,6 +8,7 @@ import com.example.attendancekt.ServiceLocator
 import com.example.attendancekt.model.entity.Member
 import com.example.attendancekt.model.repo.MemberRepo
 import com.example.attendancekt.util.AppExecutors
+import java.lang.Exception
 
 class MemberViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -19,6 +20,14 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
 
     init {
         this.memberRepo = ServiceLocator.getInstance(application).memberRepo()
+    }
+
+    fun delete(id: Int) {
+        try{
+            memberRepo.deleteById(id)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 }

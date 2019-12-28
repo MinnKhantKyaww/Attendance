@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.core.view.isInvisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.attendancekt.model.entity.Member
 import kotlin.math.abs
 
@@ -37,9 +39,11 @@ class BindingUtil {
             }
         }
 
-        @BindingAdapter("visibile")
-        fun View.setVisibile(member: Member) {
-            visibility = if (member.id > 0) View.VISIBLE else View.INVISIBLE
+        @BindingAdapter("visibility")
+        fun View.setVisibile(member: MutableLiveData<Member?>) {
+            visibility = if (member.value?.id!! > 0) {
+                View.VISIBLE
+            } else View.INVISIBLE
         }
 
     }

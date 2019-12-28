@@ -24,6 +24,7 @@ import com.example.attendancekt.databinding.MemberEditBinding
 import com.example.attendancekt.util.FileUtil
 import com.example.attendancekt.util.PermissionUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet.*
@@ -74,6 +75,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         val fragmentManager: FragmentManager? = getFragmentManager()
         val fragmentTransaction = fragmentManager?.beginTransaction()
+
 
         memberEditBinding = MemberEditBinding.inflate(inflater, container, false)
 

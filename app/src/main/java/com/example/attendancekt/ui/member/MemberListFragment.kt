@@ -47,8 +47,12 @@ class MemberListFragment : Fragment() {
 
         memberAdapter.setAdapterItemClickListener(object : AdpaterItemClickListener<Member> {
             override fun onClick(t: Member) {
+                if(getView() == null) return
 
-            }
+                var args = Bundle()
+                args.putInt(MemberEditFragment.KEY_PRODUCT_ID, t.id)
+                findNavController().navigate(R.id.action_memberListFragment_to_memberEditFragment, args)
+                }
 
         })
 

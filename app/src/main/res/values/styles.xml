@@ -10,7 +10,7 @@
     https://www.behance.net/gallery/69427253/LUOKKAPP-Student-Attendance-Mobile-App-(Case-Study)
     https://csform.com/product/matta-material-design-android-ui-template-theme-app/-->
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -27,5 +27,10 @@
     <style name="AppTheme.AppBarOverlay"  parent="ThemeOverlay.MaterialComponents.Light">
         <item name="android:actionBarStyle">@color/colorYellow</item>
     </style>0
+
+    <style name="AppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:elevation">0dp</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
 </resources>

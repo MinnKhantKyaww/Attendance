@@ -27,12 +27,12 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tvImage"
-                android:layout_width="64dp"
+                android:layout_width="50dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/img_round_border"
+                android:scaleType="fitXY"
                 android:src="@mipmap/daredevil"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +43,14 @@
                 android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="@{obj.name}"
-                app:layout_constraintEnd_toStartOf="@+id/dropDownExpand"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
                 app:layout_constraintStart_toEndOf="@+id/tvImage"
                 app:layout_constraintTop_toTopOf="@+id/tvImage"
                 tools:text="Minn Khant Kyaw" />
@@ -57,22 +60,37 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{obj.email}"
+                android:textColor="#575656"
+                android:fontFamily="sans-serif-condensed-medium"
                 app:layout_constraintBottom_toBottomOf="@+id/tvImage"
                 app:layout_constraintEnd_toEndOf="@+id/tvName"
                 app:layout_constraintStart_toStartOf="@+id/tvName"
                 app:layout_constraintTop_toBottomOf="@+id/tvName"
                 tools:text="minnkhantkyaw@gmail.com" />
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="55dp"
+                android:layout_height="0dp"
+                android:elevation="0dp"
+                android:background="#181818"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dropDownExpand"
                 android:layout_width="37dp"
                 android:layout_height="28dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/ic_expand_more_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
