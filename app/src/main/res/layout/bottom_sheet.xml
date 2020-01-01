@@ -8,19 +8,19 @@
         android:id="@+id/tvTakePhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackground"
-        android:drawableStart="@drawable/ic_photo_camera_black_24dp"
+        android:drawableStart="@drawable/ic_camera_enhance_black_24dp"
         android:drawablePadding="16dp"
+        android:padding="16dp"
         android:text="Take Photo" />
 
     <TextView
         android:id="@+id/tvChooseGallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/ic_photo_library_black_24dp"
         android:drawablePadding="16dp"
+        android:padding="16dp"
         android:text="Choose from gallery" />
 </LinearLayout>

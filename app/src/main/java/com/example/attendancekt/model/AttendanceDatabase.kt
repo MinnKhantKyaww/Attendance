@@ -8,6 +8,7 @@ import com.example.attendancekt.model.dao.AttendanceDao
 import com.example.attendancekt.model.dao.MemberDao
 import com.example.attendancekt.model.entity.Attendance
 import com.example.attendancekt.model.entity.Member
+import com.example.attendancekt.model.entity.Status
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.LocalDateTime
@@ -36,5 +37,13 @@ class TypeConverters {
         fun setLocaDateTime(dataTime: DateTime): Long {
             return dataTime.millis
         }
+
+        @JvmStatic
+        @TypeConverter
+        fun getAttendanceStatus(value: Int): Status = Status.values()[value]
+
+        @JvmStatic
+        @TypeConverter
+        fun setAttendanceStatus(status: Status): Int = status.ordinal
     }
 }

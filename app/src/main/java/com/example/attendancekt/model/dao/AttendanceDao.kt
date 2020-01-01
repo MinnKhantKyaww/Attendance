@@ -12,7 +12,7 @@ interface AttendanceDao: CudDao<Attendance> {
     @Query("SELECT * FROM Attendance WHERE id = :id LIMIT 1")
     fun getAttendace(id: Long): LiveData<Attendance>
 
-    @Query("SELECT a.id, m.name, a.event_time  FROM Attendance a " +
+    @Query("SELECT a.id, m.name, a.event_time, a.status  FROM Attendance a " +
             "LEFT JOIN Member m ON a.member_id = m.id " +
             "ORDER BY a.event_time DESC")
     fun getAll(): DataSource.Factory<Int, MemberAttendance>

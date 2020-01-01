@@ -14,7 +14,7 @@ class FileUtil {
         @Throws(Exception::class)
         fun writeImage(context: Context, uri: Uri, imageFIle: File): Bitmap? {
 
-            val options = BitmapFactory.Options()
+            var options = BitmapFactory.Options()
             options.inJustDecodeBounds = true
             BitmapFactory.decodeStream(context.contentResolver.openInputStream(uri),
                 null, options)

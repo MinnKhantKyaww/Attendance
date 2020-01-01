@@ -7,15 +7,33 @@
     <fragment
         android:id="@+id/memberListFragment"
         android:name="com.example.attendancekt.ui.member.MemberListFragment"
-        android:label="MemberListFragment"
+        android:label="MemberList"
         tools:layout="@layout/fragment_list_member">
         <action
             android:id="@+id/action_memberListFragment_to_memberEditFragment"
             app:destination="@id/memberEditFragment" />
+        <action
+            android:id="@+id/action_memberListFragment_to_memberAttendanceFragment"
+            app:destination="@id/memberAttendanceFragment" />
     </fragment>
     <fragment
         android:id="@+id/memberEditFragment"
         android:name="com.example.attendancekt.ui.member.MemberEditFragment"
-        android:label="MemberEditFragment"
-        tools:layout="@layout/fragment_member_edit"/>
+        android:label="MemberEdit"
+        tools:layout="@layout/fragment_member_edit" />
+    <fragment
+        android:id="@+id/memberAttendanceFragment"
+        android:name="com.example.attendancekt.ui.member.attendance.MemberAttendanceFragment"
+        android:label="AttendanceList"
+        tools:layout="@layout/fragment_member_attendance">
+        <action
+            android:id="@+id/action_memberAttendanceFragment_to_memberAttendanceEditFragment"
+            app:destination="@id/memberAttendanceEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberAttendanceEditFragment"
+        android:name="com.example.attendancekt.ui.member.attendance.edit.MemberAttendanceEditFragment"
+        tools:layout="@layout/fragment_attendance_edit"
+        android:label="AttendanceEdit" />
+
 </navigation>

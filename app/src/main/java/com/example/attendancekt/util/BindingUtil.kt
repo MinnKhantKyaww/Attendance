@@ -31,9 +31,9 @@ class BindingUtil {
         val value: String = editText.text.toString()
         return if(value.isEmpty()) 0 else value.toInt()
     }*/
-
+        @JvmStatic
         @BindingAdapter("path")
-        fun setImageUri(imageView: ImageView, imageFilePath: String) {
+        fun setImageUri(imageView: ImageView, imageFilePath: String?) {
             if (imageFilePath != null && imageFilePath.isNotEmpty()) {
                 imageView.setImageURI(Uri.parse(imageFilePath))
             }

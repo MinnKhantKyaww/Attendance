@@ -5,6 +5,11 @@
     <item android:id="@+id/memberEditFragment"
         android:icon="@drawable/ic_add_user"
         app:showAsAction="always"
-        android:title="addMemberMenu"/>
+        android:title="Add Member"/>
+
+
+    <item android:id="@+id/memberAttendanceFragment"
+        android:title="Attendance"
+        app:showAsAction="never"/>
 
 </menu>

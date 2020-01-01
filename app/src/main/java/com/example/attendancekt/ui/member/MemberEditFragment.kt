@@ -11,6 +11,7 @@ import android.view.*
 import android.webkit.PermissionRequest
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -40,7 +41,7 @@ import kotlin.collections.ArrayList
 class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
-        const val KEY_PRODUCT_ID = "product_id"
+        const val KEY_MEMBER_ID = "member_id"
         const val REQUEST_IMAGE_CAPTURE = 1
         const val REQUEST_PICK_IMAGE = 3
     }
@@ -49,15 +50,17 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     var background: View? = null
 
+    lateinit var takePhoto: TextView
+    lateinit var chooseGallery: TextView
+
     private var memberEditBinding: MemberEditBinding? = null
 
-    var currentPhotoFilePath: String? = null
+    lateinit var currentPhotoFilePath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        val activity = requireActivity() as MainActivity
-        activity.actionBar?.setDisplayHomeAsUpEnabled(true)
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
 
         //memberEditBinding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_member_edit)
 
@@ -73,7 +76,6 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentManager: FragmentManager? = getFragmentManager()
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
 
@@ -102,18 +104,26 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ageSpinner?.onItemSelectedListener = this
 
         addMemberPhoto.setOnClickListener(View.OnClickListener {
-            val bottomSheetDialog = BottomSheetDialog(requireContext())
+            var bottomSheetDialog = BottomSheetDialog(requireContext())
 
-            val bottomSheet = layoutInflater.inflate(R.layout.bottom_sheet, null)
 
-            tvTakePhoto.setOnClickListener {
-                bottomSheetDialog.dismiss()
-                dispatchPictureIntent()
-            }
+            var bottomSheet = layoutInflater.inflate(R.layout.bottom_sheet, null)
 
-            tvChooseGallery.setOnClickListener {
-                bottomSheetDialog.dismiss()
-                dispatchChoosePictureIntent()
+            takePhoto = bottomSheet.findViewById(R.id.tvTakePhoto)
+            chooseGallery = bottomSheet.findViewById(R.id.tvChooseGallery)
+
+            println("inflating....")
+
+            takePhoto.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                    println("takePhoto.....")
+                    dispatchPictureIntent()
+                }
+
+            chooseGallery.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                    println("chooseGallery.....")
+                    dispatchChoosePictureIntent()
             }
 
             bottomSheetDialog.setContentView(bottomSheet)
@@ -130,7 +140,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         var id: Int
         if (arguments != null) {
-            id = arguments!!.getInt(KEY_PRODUCT_ID)
+            id = arguments!!.getInt(KEY_MEMBER_ID)
         } else {
             id = 0
         }
@@ -142,7 +152,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         var restul = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && requestCode == Activity.RESULT_OK && currentPhotoFilePath != null) {
             memberEditBinding?.addMemberPhoto?.setImageURI(Uri.parse(currentPhotoFilePath))
-            viewModel.members.value?.photo = currentPhotoFilePath as String
+            viewModel.members.value?.photo = currentPhotoFilePath
         } else if (requestCode == REQUEST_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             var photoURI = data?.data
             try {
@@ -153,7 +163,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     )
                 }
                 memberEditBinding?.addMemberPhoto?.setImageBitmap(bitmap)
-                viewModel.members.value?.photo = currentPhotoFilePath.toString()
+                viewModel.members.value?.photo = currentPhotoFilePath
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -169,8 +179,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        val activity = requireActivity() as MainActivity
-        activity.actionBar?.setDisplayHomeAsUpEnabled(false)
+        requireActivity().actionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -188,7 +197,10 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PermissionUtil.PERMISSION_CAMERA) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) dispatchPictureIntent()
+            println("PERMISSION CAMERA")
+            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                dispatchPictureIntent()
+            }
         }
     }
 
@@ -197,7 +209,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
             return
         }
 
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(requireContext().packageManager) != null) {
             var photoPath: File? = null
             try {
@@ -221,7 +233,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     @Throws(IOException::class)
     private fun createImageFile(): File {
         var time = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(Date())
-        var imageFileName = "JPEG_ $time _"
+        var imageFileName = "JPEG_" + time + "_"
         var image = File.createTempFile(
             imageFileName,
             ".jpg",
