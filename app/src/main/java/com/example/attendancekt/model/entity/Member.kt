@@ -14,5 +14,7 @@ data class Member(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                    var photo: String = "",
                    var barcode: String = "") {
 
-
+    override fun toString(): String {
+        return name
+    }
 }

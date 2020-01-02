@@ -11,12 +11,12 @@ import org.joda.time.LocalDateTime
 )
 data class Attendance(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    var id: Long = 0,
     @ColumnInfo(name = "event_time")
-    val eventTime: DateTime = DateTime.now(),
-    val status: Status = Status.PRESENT,
+    var eventTime: DateTime = DateTime.now(),
+    var status: Status = Status.PRESENT,
     @ColumnInfo(name = "member_id")
-    val memberId: Int = 0
+    var memberId: Int = 0
 )
 
 enum class Status {

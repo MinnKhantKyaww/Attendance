@@ -22,6 +22,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--<androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/ic_delete_forever_black_24dp"
+                android:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnDelete"
+                app:layout_constraintEnd_toEndOf="@+id/btnDelete"
+                app:layout_constraintStart_toStartOf="@+id/btnDelete"
+                app:layout_constraintTop_toTopOf="@+id/btnDelete" />-->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#DFD32F2F"
+                android:elevation="2dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:iconSize="50dp"
+                android:text="D E L E T E"
+                app:iconTint="#fff"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                app:layout_constraintTop_toBottomOf="@id/materialCardView"
+                app:rippleColor="#EE2A2A"
+                app:strokeColor="#D32F2F"
+                app:strokeWidth="3dp" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="0dp"
@@ -29,10 +68,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnDelete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -60,6 +98,7 @@
                         android:elevation="3dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,13 +127,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/img_round_border"
-                path="@{viewModel.members.photo}"
                 android:elevation="3dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_photo_camera_black_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+                app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                app:path="@{viewModel.members.photo}" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addName"
@@ -173,31 +212,13 @@
                 android:layout_width="152dp"
                 android:layout_height="122dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="85dp"
                 android:elevation="5dp"
                 android:src="@drawable/ic_default_preview_qr"
                 app:layout_constraintBottom_toTopOf="@+id/btnDelete"
                 app:layout_constraintEnd_toEndOf="@+id/view"
                 app:layout_constraintStart_toStartOf="@+id/view"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDelete"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginEnd="45dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/btn_delete"
-                android:elevation="8dp"
-                android:text="DELETE"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:translationZ="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/materialCardView"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="@+id/materialCardView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

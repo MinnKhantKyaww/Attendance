@@ -1,20 +1,14 @@
 package com.example.attendancekt.ui.member.attendance.edit
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
 import android.view.*
-import android.widget.Toast
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.example.attendancekt.R
 import com.example.attendancekt.databinding.EditMemAttedanceBinding
-import com.example.attendancekt.databinding.EditMemAttedanceBindingImpl
 import com.example.attendancekt.model.entity.Member
 import kotlinx.android.synthetic.main.fragment_attendance_edit.*
 
@@ -23,6 +17,7 @@ class MemberAttendanceEditFragment : Fragment() {
     private var binding: EditMemAttedanceBinding? = null
 
     private lateinit var viewModel: MemberAttendanceEditViewModel
+    private lateinit var memberAdapter: ArrayAdapter<Member>
 
     companion object {
         const val KEY_ATTENDANCE_ID = "attendance_id"
@@ -32,10 +27,17 @@ class MemberAttendanceEditFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
+        memberAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1)
 
         if(savedInstanceState == null) {
             viewModel = ViewModelProviders.of(this).get(MemberAttendanceEditViewModel::class.java)
         }
+
+        viewModel.members.observe(this, Observer { memberAdapter.addAll(it) })
+
+        viewModel.attendance.observe(this, Observer {
+            viewModel.memberId.value = it.memberId
+        })
     }
 
 
@@ -44,37 +46,41 @@ class MemberAttendanceEditFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-
         binding = EditMemAttedanceBinding.inflate(inflater, container, false)
 
         binding?.lifecycleOwner = this
         binding?.viewModel = viewModel
-
-        fragmentTransaction?.addToBackStack(null)
-
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val listItems = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
+        selectMemberEditText.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Choose Member")
+                .setAdapter(memberAdapter) { di, i ->
+                    memberAdapter.getItem(i)?.also {
+                        viewModel.memberId.value = it.id
+                        viewModel.attendance.value?.memberId = it.id
+                    }
+                    di.dismiss()
+                }
+                .show()
+        }
 
-
-        val items = viewModel.members.value
-
-        selectMemberEditText.setOnClickListener(object : View.OnClickListener {
+        /*selectMemberEditText.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(v: View?) {
-                var alertDialogBuilder = AlertDialog.Builder(activity)
-                //viewModel.members.observe(this@MemberAttendanceEditFragment, Observer {
+                val alertDialogBuilder = AlertDialog.Builder(requireContext())
+                *//*viewModel.members.observe(this@MemberAttendanceEditFragment, Observer {
+                }*//*
 
                 with(alertDialogBuilder) {
 
                     setTitle("Members")
                     setIcon(R.drawable.ic_people_black_24dp)
-                        setItems(listItems) { dialog, which ->
+                        setItems(listItems) {dialog, which ->
                             selectMemberEditText.setText(listItems[which])
                     }
 
@@ -87,7 +93,7 @@ class MemberAttendanceEditFragment : Fragment() {
                     show()
                 }
 
-/*
+*//*
                 alertDialogBuilder.setPositiveButton("Yes"){dialog, which ->
                     Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show()
                 }
@@ -98,23 +104,19 @@ class MemberAttendanceEditFragment : Fragment() {
 
                 alertDialogBuilder.setNeutralButton("Maybe"){dialog, which ->
                     Toast.makeText(context, "Maybe", Toast.LENGTH_SHORT).show()
-                }*/
+                }*//*
 
                 //val alertDialog = alertDialogBuilder.create()
                 //alertDialog.show()
             }
 
-        })
+        })*/
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var id: Long
-        if (arguments != null) {
-            id = arguments!!.getLong(KEY_ATTENDANCE_ID)
-        } else {
-            id = 0
-        }
+        val id = arguments?.getLong(KEY_ATTENDANCE_ID) ?: 0
+
         viewModel.attendanceId.value = id
     }
 

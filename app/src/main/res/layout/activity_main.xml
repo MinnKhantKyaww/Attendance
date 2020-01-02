@@ -41,8 +41,6 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:navGraph="@navigation/nav_graph" />
 
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!--<fragment

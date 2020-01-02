@@ -55,7 +55,7 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var memberEditBinding: MemberEditBinding? = null
 
-    lateinit var currentPhotoFilePath: String
+    private lateinit var currentPhotoFilePath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -150,9 +150,11 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var restul = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && requestCode == Activity.RESULT_OK && currentPhotoFilePath != null) {
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK && currentPhotoFilePath != null) {
             memberEditBinding?.addMemberPhoto?.setImageURI(Uri.parse(currentPhotoFilePath))
             viewModel.members.value?.photo = currentPhotoFilePath
+
         } else if (requestCode == REQUEST_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             var photoURI = data?.data
             try {

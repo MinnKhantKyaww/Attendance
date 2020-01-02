@@ -1,6 +1,7 @@
 package com.example.attendancekt.ui.member.attendance
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,13 +16,19 @@ class MemberAttendanceFragment: Fragment() {
     private lateinit var viewModel: MemberAttendanceViewModel
     private lateinit var adapter: MemberAttendanceAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         adapter = MemberAttendanceAdapter()
 
+
         viewModel = ViewModelProviders.of(this)[MemberAttendanceViewModel::class.java]
-        viewModel.attedance.observe(this, Observer { adapter.submitList(it) })
+        viewModel.attedance.observe(this, Observer {
+            Log.e("TAG", it.toString())
+            adapter.submitList(it)
+        })
+
 
     }
 
@@ -35,10 +42,6 @@ class MemberAttendanceFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
-       // recyclerView.adapter = adapter
-
         recyclerView.apply {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
