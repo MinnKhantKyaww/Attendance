@@ -44,8 +44,6 @@ class MemberAttendanceFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.apply {
             setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
-
             adapter = this@MemberAttendanceFragment.adapter
         }
     }

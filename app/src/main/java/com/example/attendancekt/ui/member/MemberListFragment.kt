@@ -36,12 +36,6 @@ class MemberListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         memberListRecycle.setHasFixedSize(false)
-        memberListRecycle.addItemDecoration(
-            DividerItemDecoration(
-                view.context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
 
         memberAdapter.setAdapterItemClickListener(object : AdpaterItemClickListener<Member> {
             override fun onClick(t: Member) {
