@@ -18,22 +18,33 @@ class MemberAttendanceEditViewModel(application: Application) : AndroidViewModel
     val attendanceId = MutableLiveData<Long>()
     val memberId = MutableLiveData<Int>()
 
+    var operation = MutableLiveData<Boolean>()
+
     val members: LiveData<List<Member>> by lazy { memberRepo.getAllMember() }
 
     val member: LiveData<Member> = Transformations.switchMap(memberId) { memberRepo.getMember(it) }
 
     val attendance: LiveData<Attendance> = Transformations.switchMap(attendanceId) {
         if (it > 0) {
+
             attendanceRepo.getAttendace(it)
         } else {
             val liveData = MutableLiveData<Attendance>()
             liveData.value = Attendance()
             liveData
+
         }
     }
 
     fun save() {
-       // attendance.value?.also { attendanceRepo.save(it) }
-        attendance.value?.also { attendanceRepo.save(it) }
+        attendance.value?.also {
+            try {
+                attendanceRepo.save(it)
+                operation.postValue(true)
+            }catch (e: Exception) {
+                operation.postValue(false)
+            }
+
+        }
     }
 }

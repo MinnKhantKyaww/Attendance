@@ -115,6 +115,9 @@ class MemberAttendanceEditFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        viewModel.operation.observe(this, Observer { op -> if(op) requireActivity().onBackPressed() })
+
         val id = arguments?.getLong(KEY_ATTENDANCE_ID) ?: 0
 
         viewModel.attendanceId.value = id
@@ -127,7 +130,7 @@ class MemberAttendanceEditFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_save) {
+        if(item.itemId == R.id.action_save && selectMemberEditText != null) {
             viewModel.save()
             return true
         }
