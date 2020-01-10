@@ -26,7 +26,6 @@ class MemberAttendanceEditViewModel(application: Application) : AndroidViewModel
 
     val attendance: LiveData<Attendance> = Transformations.switchMap(attendanceId) {
         if (it > 0) {
-
             attendanceRepo.getAttendace(it)
         } else {
             val liveData = MutableLiveData<Attendance>()

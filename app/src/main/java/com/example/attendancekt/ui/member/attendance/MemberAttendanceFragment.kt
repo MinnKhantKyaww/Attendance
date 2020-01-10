@@ -22,10 +22,8 @@ class MemberAttendanceFragment: Fragment() {
         setHasOptionsMenu(true)
         adapter = MemberAttendanceAdapter()
 
-
         viewModel = ViewModelProviders.of(this)[MemberAttendanceViewModel::class.java]
-        viewModel.attedance.observe(this, Observer {
-            Log.e("TAG", it.toString())
+        viewModel.attendance.observe(this, Observer {
             adapter.submitList(it)
         })
 

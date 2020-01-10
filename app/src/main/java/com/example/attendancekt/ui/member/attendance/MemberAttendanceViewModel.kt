@@ -12,5 +12,5 @@ class MemberAttendanceViewModel(application: Application) : AndroidViewModel(app
 
     private val attendanceRepo = ServiceLocator.getInstance(application).attendanceRepo
 
-    val attedance: LiveData<PagedList<MemberAttendance>> by lazy { attendanceRepo.getAll() }
+    val attendance: LiveData<PagedList<MemberAttendance>> by lazy { attendanceRepo.getAll() }
 }

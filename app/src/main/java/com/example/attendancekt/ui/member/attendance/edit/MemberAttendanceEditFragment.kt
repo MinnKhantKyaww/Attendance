@@ -27,11 +27,10 @@ class MemberAttendanceEditFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
+
         memberAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1)
 
-        if(savedInstanceState == null) {
-            viewModel = ViewModelProviders.of(this).get(MemberAttendanceEditViewModel::class.java)
-        }
+        viewModel = ViewModelProviders.of(this).get(MemberAttendanceEditViewModel::class.java)
 
         viewModel.members.observe(this, Observer { memberAdapter.addAll(it) })
 
@@ -116,7 +115,9 @@ class MemberAttendanceEditFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.operation.observe(this, Observer { op -> if(op) requireActivity().onBackPressed() })
+        viewModel.operation.observe(
+            this,
+            Observer { op -> if (op) requireActivity().onBackPressed() })
 
         val id = arguments?.getLong(KEY_ATTENDANCE_ID) ?: 0
 
@@ -130,7 +131,7 @@ class MemberAttendanceEditFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_save && selectMemberEditText != null) {
+        if (item.itemId == R.id.action_save && selectMemberEditText != null) {
             viewModel.save()
             return true
         }

@@ -161,16 +161,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/abel"
                     android:text="Present"
-                    android:textColor="#1F1F1F" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="#1F1F1F"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/rbAbsent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/abel"
                     android:text="Absent"
-                    android:textColor="#1F1F1F" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="#1F1F1F"
+                    android:textStyle="bold" />
             </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
