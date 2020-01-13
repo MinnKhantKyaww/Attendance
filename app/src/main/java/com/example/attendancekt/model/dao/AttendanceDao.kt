@@ -9,6 +9,7 @@ import com.example.attendancekt.model.entity.tuple.MemberAttendance
 
 @Dao
 interface AttendanceDao: CudDao<Attendance> {
+
     @Query("SELECT * FROM Attendance WHERE id = :id LIMIT 1")
     fun getAttendace(id: Long): LiveData<Attendance>
 

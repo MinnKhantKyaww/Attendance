@@ -10,7 +10,10 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.attendancekt.R
+import com.example.attendancekt.model.entity.ChatMessage
 import com.example.attendancekt.model.entity.Member
+import com.example.attendancekt.model.entity.MessageType
 import kotlin.math.abs
 
 class BindingUtil {
@@ -45,6 +48,19 @@ class BindingUtil {
                 View.VISIBLE
             } else View.INVISIBLE
         }
+
+        @JvmStatic
+        @BindingAdapter("android:text")
+        fun setMessage(textView: TextView, msg: ChatMessage?) {
+            msg?.also {
+                when(it.messageType) {
+                    MessageType.JOIN -> textView.text = textView.context.getString(R.string.chat_info_join)
+                    MessageType.LEAVE -> textView.text = textView.context.getString(R.string.chat_info_leave)
+                    else -> {}
+                }
+            }
+        }
+
 
     }
 }

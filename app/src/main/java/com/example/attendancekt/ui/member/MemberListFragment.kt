@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.attendancekt.MainActivity
 import com.example.attendancekt.R
 import com.example.attendancekt.model.entity.Member
 import kotlinx.android.synthetic.main.fragment_list_member.*
@@ -81,6 +82,5 @@ class MemberListFragment : Fragment() {
         
         return super.onOptionsItemSelected(item)
     }
-
 
 }

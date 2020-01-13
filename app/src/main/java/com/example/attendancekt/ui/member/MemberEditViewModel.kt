@@ -17,12 +17,15 @@ class MemberEditViewModel(application: Application) : AndroidViewModel(applicati
 
     var operation: MutableLiveData<Boolean> = MutableLiveData()
 
+   var attendanceId: Int = 0
+
     init {
         this.memberRepo = ServiceLocator.getInstance(application).memberRepo()
     }
 
     fun init(id: Int) {
        AppExecutors().diskIO().execute {
+           attendanceId = id
             var member = memberRepo?.getMemberSync(id)
             if (member != null) members.postValue(member) else members.postValue(Member())
         }
@@ -39,4 +42,8 @@ class MemberEditViewModel(application: Application) : AndroidViewModel(applicati
 
         }
     }
+
+    fun delete() {
+            memberRepo?.deleteById(attendanceId)
+        }
 }

@@ -3,6 +3,7 @@ package com.example.attendancekt.ui.member.attendance.edit
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
+import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.attendancekt.R
 import com.example.attendancekt.databinding.EditMemAttedanceBinding
 import com.example.attendancekt.model.entity.Member
+import com.example.attendancekt.model.entity.Status
 import kotlinx.android.synthetic.main.fragment_attendance_edit.*
 
 class MemberAttendanceEditFragment : Fragment() {
@@ -67,6 +69,17 @@ class MemberAttendanceEditFragment : Fragment() {
                 }
                 .show()
         }
+
+        rdGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                when(checkedId) {
+                    R.id.rbPresent -> viewModel.attendance.value?.status = Status.PRESENT
+                    R.id.rbAbsent -> viewModel.attendance.value?.status = Status.ABSENT
+                }
+            }
+
+        })
 
         /*selectMemberEditText.setOnClickListener(object : View.OnClickListener {
 

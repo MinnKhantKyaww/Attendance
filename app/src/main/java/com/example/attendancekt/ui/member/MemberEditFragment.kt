@@ -181,7 +181,9 @@ class MemberEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        var activity = requireActivity() as MainActivity
         requireActivity().actionBar?.setDisplayHomeAsUpEnabled(false)
+        activity.hideKeyboard()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
