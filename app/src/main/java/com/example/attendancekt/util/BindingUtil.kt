@@ -54,8 +54,8 @@ class BindingUtil {
         fun setMessage(textView: TextView, msg: ChatMessage?) {
             msg?.also {
                 when(it.messageType) {
-                    MessageType.JOIN -> textView.text = textView.context.getString(R.string.chat_info_join)
-                    MessageType.LEAVE -> textView.text = textView.context.getString(R.string.chat_info_leave)
+                    MessageType.JOIN -> textView.text = textView.context.getString(R.string.chat_info_join, it.sender)
+                    MessageType.LEAVE -> textView.text = textView.context.getString(R.string.chat_info_leave, it.sender)
                     else -> {}
                 }
             }

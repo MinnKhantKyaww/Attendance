@@ -26,8 +26,9 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="2dp"
             android:layout_weight="1"
+            android:paddingStart="8dp"
             android:background="@drawable/chat_edit_text_drawable"
-            android:hint="   messages..." />
+            android:hint="messages..." />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSend"
@@ -55,7 +56,7 @@
         android:id="@+id/chat_recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

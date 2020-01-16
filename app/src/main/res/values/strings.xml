@@ -4,5 +4,5 @@
     <string name="drawer_close">Drawer Close</string>
     <string name="server_url">ws://spring-stomp-simple-chat.apps.us-east-1.starter.openshift-online.com/ws-chat</string>
     <string name="chat_info_join">%s joined.</string>
-    <string name="chat_info_leave">%s left</string>
+    <string name="chat_info_leave">%s left.</string>
 </resources>

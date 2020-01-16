@@ -10,13 +10,14 @@
     https://www.behance.net/gallery/69427253/LUOKKAPP-Student-Attendance-Mobile-App-(Case-Study)
     https://csform.com/product/matta-material-design-android-ui-template-theme-app/-->
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" xmlns:tools="http://schemas.android.com/tools">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">#000000</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -38,9 +39,7 @@
     </style>
 
     <style name="AppTheme.PrimaryAcent" parent="ThemeOverlay.MaterialComponents.Light">
-
         <item name="android:colorControlActivated">@color/colorPrimary</item>
-
     </style>
 
 </resources>

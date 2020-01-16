@@ -38,12 +38,12 @@ class FragmentChatting: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManger = LinearLayoutManager(view.context)
-        layoutManger.stackFromEnd = true
+        val layoutMangerView = LinearLayoutManager(view.context)
+        layoutMangerView.stackFromEnd = true
 
         chat_recyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = layoutManger
+            layoutManager = layoutMangerView
             adapter = this@FragmentChatting.adapter
         }
 
@@ -51,5 +51,9 @@ class FragmentChatting: Fragment() {
             viewModel.send(edMessage.text.toString())
             edMessage.setText("")
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

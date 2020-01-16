@@ -40,8 +40,10 @@ class ChatMessageViewModel(application: Application): AndroidViewModel(applicati
 
         val dispo = stompClient.lifecycle().subscribe {event ->
             when(event.type) {
+
                 LifecycleEvent.Type.OPENED -> {
-                    stompClient.topic("msg/public").subscribe {
+
+                    stompClient.topic("/msg/public").subscribe {
                         val message = objectMapper.readValue(it.payload, ChatMessage::class.java)
                         list.add(message)
 

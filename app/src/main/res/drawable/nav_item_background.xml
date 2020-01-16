@@ -6,7 +6,7 @@
         <selector>
             <item android:state_checked="true">
                 <shape android:shape="rectangle">
-                    <solid android:color="#88F7BA20"/>
+                    <solid android:color="#7AF7BA20"/>
                     <corners android:radius="8dp"/>
                     <stroke android:color="#2C2C2C" android:width="2dp"/>
                 </shape>
